@@ -18,18 +18,18 @@
 
   <httpEndpoint host="*" httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint"/>
 
-  <include location="${shared.resource.dir}/ease/mq/jms3.xml"/>
+  <include location="${shared.resource.dir}/ease/mq/jakarta-ra.xml"/>
 
   <jmsConnectionFactory  jndiName="jms/wmqCF " connectionManagerRef="mqConnMgr">
      <properties.wmqJms
       transportType="CLIENT"
-      hostName="meiquemgr-9906.qm.us-south.mq.appdomain.cloud"
-      port="30714"
+      hostName="${mqHostName}"
+      port="${mqPort}"
       channel="DEV.APP.SVRCONN"
-      queueManager="meiQueMgr"
+      queueManager="${mqManagerName}"
       sslCipherSuite="TLS_AES_128_GCM_SHA256"
-      userName="app"
-      password="${MQCredentials}"/>
+      userName="${mqAppUserName}"
+      password="${mqAppUserPwd}"/>
   </jmsConnectionFactory>
 
   <connectionManager id="mqConnMgr" maxPoolSize="2"/>
@@ -37,7 +37,6 @@
   <jmsQueue id="jms/queue1" jndiName="jms/wmqQ1">
      <properties.wmqJms
       baseQueueName="DEV.QUEUE.1"
-      baseQueueManagerName="QM1"/>
   </jmsQueue>
 
   <webApplication location="io.openliberty.sample.getting.started.war" contextRoot="${app.context.root}"/>
