@@ -36,7 +36,7 @@
 
   <jmsQueue id="jms/queue1" jndiName="jms/wmqQ1">
      <properties.wmqJms
-      baseQueueName="DEV.QUEUE.1"
+      baseQueueName="DEV.QUEUE.1"/>
   </jmsQueue>
 
   <webApplication location="io.openliberty.sample.getting.started.war" contextRoot="${app.context.root}"/>
